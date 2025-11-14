@@ -22,4 +22,17 @@ exports.create = (req, res) => {
             });
         }
     })
-}
+};
+
+exports.read = async (req, res) => {
+    try {
+        const task = await get();
+        return res.json({
+            data: task.rows
+        });
+    } catch (err) {
+        return res.status(400).json({
+            error: err,
+        });
+    }
+};
