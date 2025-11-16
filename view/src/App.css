@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+.todo-item {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem .75rem;
+  margin: .25rem 0;
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+  background-color: #f9f9f9;
+}
+
+.todo-text {
+  flex: 1;
+  text-align: left;
+  padding-right: .75rem;
+}
+
+.delete-btn {
+  background-color: #ff4757;
+  border: none;
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-size: .75rem;
+  transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #ff3838;
+}
+
+.delete-btn:active {
+  background-color: #e84118;
+}

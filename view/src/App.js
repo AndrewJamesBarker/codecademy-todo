@@ -9,68 +9,69 @@ const App = () => {
   const [todoList, setTodoList] = useState();
   const [error, setError] = useState();
 
-// Create a fetchTodos() function to update the View from Model using getTodos() function from Controller
-const fetchTodos = async () => {
-  const res = await getTodos();
-  if (res.error) {
-    setError(res.error.name);
-  }
-  setTodoList(res.data);
-}
-// Create a handleDelete() function to remove to-do list with matching id
-const handleDelete = async (id) => {
-  try {
-    await removeTodo(id);
-    fetchTodos();
-  } catch (err) {
-    setError(err);
-  }
-}
-// Create a handleSubmit() function to add new to-do list
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError();
-  const data = new FormData(e.currentTarget);
-  try {
-    data.set('description', todo.description);
-    data.set('created_at', `${new Date().toISOString()}`)
-    const newTodo = await createTodo(data);
-    if (newTodo.error) {
-      setError(newTodo.error);
+  // Create a fetchTodos() function to update the View from Model
+  // using getTodos() function from Controller
+  const fetchTodos = async () => {
+    const res = await getTodos();
+    if (res.error) {
+      setError(res.error.name);
     }
-    setTodo({ description: ''});
-  } catch (err) {
-    setError(err);
-  }
-}
+    setTodoList(res.data);
+  };
+  // Create a handleDelete() function to remove to-do list with matching id
+  const handleDelete = async (id) => {
+    try {
+      await removeTodo(id);
+      fetchTodos();
+    } catch (err) {
+      setError(err);
+    }
+  };
+  // Create a handleSubmit() function to add new to-do list
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError();
+    const data = new FormData(e.currentTarget);
+    try {
+      data.set('description', todo.description);
+      data.set('created_at', `${new Date().toISOString()}`);
+      const newTodo = await createTodo(data);
+      if (newTodo.error) {
+        setError(newTodo.error);
+      }
+      setTodo({ description: '' });
+      fetchTodos();
+    } catch (err) {
+      setError(err);
+    }
+  };
 
   useEffect(() => {
-    // Initialize todoList
+    fetchTodos();
   }, []);
   return (
-    <div className="App">
+    <div className='App'>
       <h1>To-Do List</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
-          type="text"
+          type='text'
           value={todo.description}
-          onChange={(event) =>
-            setTodo({ ...todo, description: event.target.value })
+          onChange={(event) => setTodo({ ...todo, description: event.target.value })
           }
         ></input>
-        <button type="submit">Add Todo</button>
+        <button type='submit'>Add Todo</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <ol>
         {todoList?.map((todoItem) => (
-          <li
-            key={todoItem.todo_id}
-            onClick={() => {
-              handleDelete(todoItem.todo_id);
-            }}
-          >
-            {todoItem.description}
+          <li className='todo-item' key={todoItem.todo_id}>
+            <span className='todo-text'>{todoItem.description}</span>
+            <button
+            className='delete-btn'
+            onClick={() => handleDelete(todoItem.todo_id)}
+            aria-label={`Delete ${todoItem.description}`}
+            >Delete</button>
           </li>
         ))}
       </ol>
