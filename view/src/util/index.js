@@ -31,10 +31,11 @@ export const removeTodo = async (id) => {
   }
 };
 
-export const updateTodo = async (id) => {
+export const updateTodo = async (id, todo) => {
   try {
     await fetch(`api/todo/${id}`, {
-      method: 'UPDATE',
+      method: 'PUT',
+      body: todo, 
     });
     return 'updated';
   } catch (error) {

@@ -65,8 +65,8 @@ exports.editTodo = (req, res) => {
             });
         }
         try {
-            const newTask = await update(description, id);
-            return res.status(201).send({
+            const newTask = await update(id, description);
+            return res.status(200).send({
                 data: newTask.rows[0]
             });
         } catch (error) {
