@@ -30,3 +30,14 @@ export const removeTodo = async (id) => {
     return { error };
   }
 };
+
+export const updateTodo = async (id) => {
+  try {
+    await fetch(`api/todo/${id}`, {
+      method: 'UPDATE',
+    });
+    return 'updated';
+  } catch (error) {
+    return { error };
+  }
+};

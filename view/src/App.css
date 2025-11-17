@@ -32,13 +32,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
+ol {
+  margin: .5rem;
+  padding: .5rem;
+}
+
 .todo-item {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: .5rem .75rem;
@@ -54,14 +60,18 @@
   padding-right: .75rem;
 }
 
-.delete-btn {
-  background-color: #ff4757;
+.btn {
   border: none;
   padding: .25rem .5rem;
   border-radius: .25rem;
   cursor: pointer;
   font-size: .75rem;
+  color: #ffffff;
   transition: background-color 0.2s;
+}
+
+.delete-btn {
+  background-color: #ff4757;
 }
 
 .delete-btn:hover {
@@ -70,4 +80,16 @@
 
 .delete-btn:active {
   background-color: #e84118;
+}
+
+.update-btn {
+  background-color: #00be3c;
+}
+
+.update-btn:hover {
+  background-color: #00e749;
+}
+
+.update-btn:active {
+  background-color: #00f44e;
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getTodos, createTodo, removeTodo } from './util';
+import {
+  getTodos, createTodo, removeTodo, updateTodo,
+} from './util';
 
 const App = () => {
   const [todo, setTodo] = useState({
@@ -22,6 +24,15 @@ const App = () => {
   const handleDelete = async (id) => {
     try {
       await removeTodo(id);
+      fetchTodos();
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      await updateTodo(id);
       fetchTodos();
     } catch (err) {
       setError(err);
@@ -68,10 +79,15 @@ const App = () => {
           <li className='todo-item' key={todoItem.todo_id}>
             <span className='todo-text'>{todoItem.description}</span>
             <button
-            className='delete-btn'
+            className='btn delete-btn'
             onClick={() => handleDelete(todoItem.todo_id)}
             aria-label={`Delete ${todoItem.description}`}
             >Delete</button>
+            <button
+            className='btn update-btn'
+            onClick={() => handleUpdate(todoItem.todo_id)}
+            aria-label={`Delete ${todoItem.description}`}
+            >Update</button>
           </li>
         ))}
       </ol>

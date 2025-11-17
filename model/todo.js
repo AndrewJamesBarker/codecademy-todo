@@ -11,4 +11,7 @@ const get = () =>
 const remove = (id) =>
     pool.query('DELETE FROM todo WHERE todo_id = $1', [id]);
 
-module.exports = { create, get, remove };
+const update = (id, description) =>
+    pool.query(`UPDATE todo SET description = $1 WHERE todo_id = $2`, [description, id]);
+
+module.exports = { create, get, remove, update };
