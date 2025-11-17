@@ -35,7 +35,7 @@ export const updateTodo = async (id, todo) => {
   try {
     await fetch(`api/todo/${id}`, {
       method: 'PUT',
-      body: todo, 
+      body: todo,
     });
     return 'updated';
   } catch (error) {

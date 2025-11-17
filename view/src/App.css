@@ -43,6 +43,18 @@ ol {
   padding: .5rem;
 }
 
+textarea {
+  margin-right: .25rem;
+}
+
+.add-todo{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding: .5rem .75rem;
+  margin: .25rem 0;
+}
+
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -92,4 +104,27 @@ ol {
 
 .update-btn:active {
   background-color: #00f44e;
+}
+
+/* Button grouping styles */
+.todo-item .button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-item textarea {
+  flex: 1;
+  margin-right: 0.75rem;
+  resize: vertical;
+}
+
+.add-todo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-todo textarea {
+  margin-bottom: 0.5rem;
 }
